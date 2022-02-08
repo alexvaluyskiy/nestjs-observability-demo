@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { HttpModule } from '@nestjs/axios';
+import { OpenTelemetryModuleConfig } from './telemetry'
 
 @Module({
-  imports: [],
+  imports: [HttpModule, OpenTelemetryModuleConfig],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}
