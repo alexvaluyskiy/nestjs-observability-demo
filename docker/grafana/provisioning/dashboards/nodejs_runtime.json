@@ -23,7 +23,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 3,
-  "iteration": 1644425456377,
+  "iteration": 1644426363988,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -95,7 +95,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "sum(nodejs_version_info{instance=~\"$instance\"}) by (version)",
           "interval": "",
           "legendFormat": "{{version}}",
@@ -174,7 +174,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "sum(changes(process_start_time_seconds{instance=~\"$instance\"}[1m]))",
           "interval": "",
           "legendFormat": "{{instance}}",
@@ -281,7 +281,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "irate(process_cpu_user_seconds_total{instance=~\"$instance\"}[2m]) * 100",
           "interval": "",
           "legendFormat": "User CPU",
@@ -292,7 +292,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "irate(process_cpu_system_seconds_total{instance=~\"$instance\"}[2m]) * 100",
           "hide": false,
           "interval": "",
@@ -613,7 +613,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "nodejs_heap_space_size_used_bytes{instance=~\"$instance\"}",
           "interval": "",
           "legendFormat": "{{space}}",
@@ -907,7 +907,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "nodejs_active_requests{instance=~\"$instance\"}",
           "interval": "",
           "legendFormat": "{{type}}",
