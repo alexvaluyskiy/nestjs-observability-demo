@@ -7,8 +7,8 @@ networks:
     driver: bridge
 
 volumes:
-    prometheus_data: {}
-    grafana_data: {}
+    prometheus_data2: {}
+    grafana_data2: {}
     mysql_db_data_container: {}
 
 services:
@@ -17,7 +17,7 @@ services:
     container_name: prometheus
     volumes:
       - ./prometheus:/etc/prometheus
-      - prometheus_data:/prometheus
+      - prometheus_data2:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -28,6 +28,8 @@ services:
     restart: unless-stopped
     expose:
       - 9090
+    ports:
+      - "9090:9090"
     networks:
       - monitor-net
     labels:
@@ -37,7 +39,7 @@ services:
     image: grafana/grafana:8.3.4
     container_name: grafana
     volumes:
-      - grafana_data:/var/lib/grafana
+      - grafana_data2:/var/lib/grafana
       - ./grafana/provisioning:/etc/grafana/provisioning
     environment:
       - GF_SECURITY_ADMIN_USER=${ADMIN_USER}
