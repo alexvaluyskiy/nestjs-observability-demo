@@ -2,7 +2,7 @@ import { Controller, Get, Inject } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Book } from './database/models/book';
 
-@Controller()
+@Controller({ version: '1' })
 export class AppController {
   constructor(
     private httpService: HttpService,

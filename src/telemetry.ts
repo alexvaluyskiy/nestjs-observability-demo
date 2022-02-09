@@ -21,6 +21,7 @@ const jaegerExporter = new JaegerExporter({
 export const otelSDK = new NodeSDK({
   metricExporter: new PrometheusExporter({
     port: 8081,
+    endpoint: 'metrics'
   }),
   metricInterval: 1000,
   resource: new Resource({
