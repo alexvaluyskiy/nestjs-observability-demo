@@ -23,11 +23,15 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1644419931184,
+  "iteration": 1644425199650,
   "links": [],
   "liveNow": false,
   "panels": [
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -78,7 +82,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "(sum(rate(http_request_duration_seconds_bucket{le=\"0.025\",status=~\"2..|3..\", instance=\"$instance\"}[1m])) + sum(rate(http_request_duration_seconds_bucket{le=\"0.1\",status=~\"2..|3..\", instance=\"$instance\"}[1m]))) / 2 / sum(rate(http_request_duration_seconds_count{instance=\"$instance\"}[1m]))",
           "interval": "",
           "legendFormat": "",
@@ -89,6 +93,10 @@
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -162,7 +170,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "(sum(rate(http_request_duration_seconds_bucket{le=\"0.025\",status=~\"2..|3..\", instance=\"$instance\"}[1m])) + sum(rate(http_request_duration_seconds_bucket{le=\"0.1\",status=~\"2..|3..\", instance=\"$instance\"}[1m]))) / 2 / sum(rate(http_request_duration_seconds_count{instance=\"$instance\"}[1m]))",
           "interval": "",
           "legendFormat": "",
@@ -186,6 +194,10 @@
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -260,7 +272,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "sum(rate(http_request_total{instance=\"$instance\"}[10m]))",
           "interval": "",
           "legendFormat": "",
@@ -271,6 +283,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -351,7 +367,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "rate(http_request_total{instance=\"$instance\"}[10m])",
           "interval": "",
           "legendFormat": "{{method}} - {{path}}",
@@ -362,6 +378,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -436,9 +456,8 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "histogram_quantile(0.9, sum by (le) (rate(http_request_duration_seconds_bucket{instance=\"$instance\",status=~\"2..|3..\"}[10m])))",
-          "hide": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -448,6 +467,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -525,9 +548,8 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "histogram_quantile(0.9, sum by (le, method, path) (rate(http_request_duration_seconds_bucket{instance=\"$instance\",status=~\"2..|3..\"}[10m])))",
-          "hide": false,
           "interval": "",
           "legendFormat": "{{method}} - {{path}}",
           "refId": "A"
@@ -537,6 +559,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -614,7 +640,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "sum(rate(http_request_duration_seconds_count{status=~\"5..\", instance=\"$instance\"}[10m])) by (status)",
           "interval": "",
           "legendFormat": "{{status}}",
@@ -654,7 +680,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -674,6 +700,6 @@
   "timezone": "",
   "title": "NodeJS - HTTP",
   "uid": "RLDI-Tank",
-  "version": 32,
+  "version": 35,
   "weekStart": ""
 }

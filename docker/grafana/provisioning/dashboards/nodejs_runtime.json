@@ -22,15 +22,15 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
-  "iteration": 1644330325399,
+  "id": 3,
+  "iteration": 1644425456377,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "000000001"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -91,6 +91,11 @@
       "pluginVersion": "8.3.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "sum(nodejs_version_info{instance=~\"$instance\"}) by (version)",
           "interval": "",
           "legendFormat": "{{version}}",
@@ -103,7 +108,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "000000001"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -165,6 +170,11 @@
       "pluginVersion": "8.3.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "sum(changes(process_start_time_seconds{instance=~\"$instance\"}[1m]))",
           "interval": "",
           "legendFormat": "{{instance}}",
@@ -188,6 +198,10 @@
       "type": "row"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -236,7 +250,7 @@
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "short"
         },
         "overrides": []
       },
@@ -265,25 +279,24 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "000000001"
+            "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
           "expr": "irate(process_cpu_user_seconds_total{instance=~\"$instance\"}[2m]) * 100",
-          "hide": false,
           "interval": "",
-          "legendFormat": "User CPU - {{instance}}",
+          "legendFormat": "User CPU",
           "refId": "A"
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "000000001"
+            "uid": "PBFA97CFB590B2093"
           },
           "exemplar": true,
           "expr": "irate(process_cpu_system_seconds_total{instance=~\"$instance\"}[2m]) * 100",
           "hide": false,
           "interval": "",
-          "legendFormat": "Sys CPU - {{instance}}",
+          "legendFormat": "Sys CPU",
           "refId": "B"
         }
       ],
@@ -293,7 +306,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "000000001"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -370,13 +383,22 @@
       "pluginVersion": "8.3.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "process_resident_memory_bytes{instance=~\"$instance\"}",
-          "hide": false,
           "interval": "",
           "legendFormat": "Process Memory",
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "nodejs_heap_size_total_bytes{instance=~\"$instance\"}",
           "hide": false,
           "interval": "",
@@ -384,13 +406,25 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "nodejs_heap_size_used_bytes{instance=~\"$instance\"}",
+          "hide": false,
           "interval": "",
           "legendFormat": "Heap Used",
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "nodejs_external_memory_bytes{instance=~\"$instance\"}",
+          "hide": false,
           "interval": "",
           "legendFormat": "External Memory",
           "refId": "D"
@@ -400,6 +434,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -477,14 +515,13 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "000000001"
+            "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
+          "exemplar": false,
           "expr": "nodejs_heap_size_used_bytes{instance=~\"$instance\"}",
-          "hide": false,
           "interval": "",
           "legendFormat": "",
-          "refId": "B"
+          "refId": "A"
         }
       ],
       "title": "Heap Size Used (Total)",
@@ -493,7 +530,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "000000001"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -572,8 +609,12 @@
       "pluginVersion": "8.3.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "nodejs_heap_space_size_used_bytes{instance=~\"$instance\"}",
-          "hide": false,
           "interval": "",
           "legendFormat": "{{space}}",
           "refId": "A"
@@ -585,7 +626,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "000000001"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -649,8 +690,8 @@
       "options": {
         "legend": {
           "calcs": [
-            "lastNotNull",
-            "max"
+            "max",
+            "lastNotNull"
           ],
           "displayMode": "table",
           "placement": "right"
@@ -662,14 +703,24 @@
       "pluginVersion": "8.3.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "nodejs_active_handles_total{instance=~\"$instance\"}",
-          "hide": false,
           "interval": "",
           "legendFormat": "Active Handler",
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "nodejs_active_requests_total{instance=~\"$instance\"}",
+          "hide": false,
           "interval": "",
           "legendFormat": "Active Request",
           "refId": "B"
@@ -681,7 +732,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "000000001"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -758,8 +809,12 @@
       "pluginVersion": "8.3.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "nodejs_active_handles{instance=~\"$instance\"}",
-          "hide": false,
           "interval": "",
           "legendFormat": "{{type}}",
           "refId": "A"
@@ -771,7 +826,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "000000001"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -848,8 +903,12 @@
       "pluginVersion": "8.3.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "nodejs_active_requests{instance=~\"$instance\"}",
-          "hide": false,
           "interval": "",
           "legendFormat": "{{type}}",
           "refId": "A"
@@ -861,7 +920,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "000000001"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -938,8 +997,12 @@
       "pluginVersion": "8.3.4",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": false,
           "expr": "nodejs_eventloop_lag_seconds{instance=~\"$instance\"}",
-          "hide": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -949,6 +1012,10 @@
       "type": "timeseries"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1011,8 +1078,8 @@
       "options": {
         "legend": {
           "calcs": [
-            "lastNotNull",
-            "max"
+            "max",
+            "lastNotNull"
           ],
           "displayMode": "table",
           "placement": "right"
@@ -1026,14 +1093,13 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "000000001"
+            "uid": "PBFA97CFB590B2093"
           },
-          "exemplar": true,
-          "expr": "histogram_quantile(0.95, sum(rate(nodejs_gc_duration_seconds_bucket[1m])) by (kind))",
-          "hide": false,
+          "exemplar": false,
+          "expr": "histogram_quantile(0.95, sum by(le, kind) (rate(nodejs_gc_duration_seconds_bucket{instance=\"$instance\"}[1m])))",
           "interval": "",
           "legendFormat": "{{kind}}",
-          "refId": "B"
+          "refId": "A"
         }
       ],
       "title": "GC Duration (95 pt)",
@@ -1087,8 +1153,8 @@
     ]
   },
   "timezone": "",
-  "title": "NodeJS - Runtime",
-  "uid": "1OBhg8A7k",
-  "version": 67,
+  "title": "NodeJS - Runtime2",
+  "uid": "1OBhg8A7k2",
+  "version": 12,
   "weekStart": ""
 }
