@@ -1,6 +1,9 @@
 import { Controller, Get, Inject } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { Book } from './database/models/book';
+import { Client, ClientKafka, MessagePattern, Payload } from '@nestjs/microservices';
+import { microserviceConfig } from './kafka/microserviceConfig';
+import { KafkaEvent } from './kafka/kafka.event';
 
 @Controller({ version: '1' })
 export class AppController {
@@ -8,6 +11,9 @@ export class AppController {
     private httpService: HttpService,
     @Inject('BOOKS_REPOSITORY')
     private booksRepository: typeof Book) {}
+
+  @Client(microserviceConfig)
+  client: ClientKafka;
 
   @Get("http")
   getHttp(): string {
@@ -24,5 +30,22 @@ export class AppController {
   async getDatabase(): Promise<string> {
     var books = await this.booksRepository.findAll<Book>();
     return books[0].name;
+  }
+
+  @Get("kafka-publish")
+  publishToKafka() {
+    let message = new KafkaEvent();
+    message.eventId = 1;
+    message.name = "kafka-publish-test";
+    message.date = new Date();
+
+    this.client.emit<KafkaEvent>('entity-created', message);
+    console.log(`Consumed sent: entity-created, eventId=${ message.eventId }, name=${ message.name }, date=${ message.date }`);
+    return "kafka sent";
+  }
+
+  @MessagePattern('entity-created')
+  killDragon(@Payload() message: KafkaEvent) {
+    console.log(`Consumed message: entity-created, eventId=${ message.eventId }, name=${ message.name }, date=${ message.date }`);
   }
 }
