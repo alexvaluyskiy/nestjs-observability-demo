@@ -11,6 +11,7 @@ import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
 // instrumentation
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
 import { MySQL2Instrumentation } from '@opentelemetry/instrumentation-mysql2';
+import { KafkaJsInstrumentation } from "opentelemetry-instrumentation-kafkajs";
 
 const jaegerExporter = new JaegerExporter({
   tags: [],
@@ -21,7 +22,7 @@ const jaegerExporter = new JaegerExporter({
 export const otelSDK = new NodeSDK({
   metricExporter: new PrometheusExporter({
     port: 8081,
-    endpoint: 'metrics'
+    endpoint: 'prometheus'
   }),
   metricInterval: 1000,
   resource: new Resource({
@@ -34,7 +35,8 @@ export const otelSDK = new NodeSDK({
     new HttpInstrumentation({
       ignoreIncomingPaths: ['/metrics', '/favicon.ico']
     }),
-    new MySQL2Instrumentation()
+    new MySQL2Instrumentation(),
+    new KafkaJsInstrumentation(),
   ],
 });
 
