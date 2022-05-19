@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { otelSDK } from './telemetry';
+import { microserviceConfig } from './kafka/microserviceConfig';
 
 async function bootstrap() {
   // Start SDK before nestjs factory create
@@ -22,7 +23,11 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  // kafka
+  app.connectMicroservice(microserviceConfig);
   
+  await app.startAllMicroservices();
   await app.listen(3000);
 }
 bootstrap();
